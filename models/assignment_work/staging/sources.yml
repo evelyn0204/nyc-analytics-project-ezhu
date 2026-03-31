@@ -89,3 +89,82 @@ sources:
             description: Y coordinate in NY State Plane projection system (NAD 83)
           - name: landmark
             description: Nearby landmark or point of interest
+
+      - name: source_dot_restaurant_requests_history
+        description: |
+          NYC restaurant requests history data.
+          One row per restaurant request record.
+        columns:
+          - name: objectid
+            description: Unique ID for the record
+            tests:
+              - unique
+              - not_null
+          - name: globalid
+            description: Global identifier for the record
+          - name: time_of_submission
+            description: Time the request was submitted
+          - name: restaurant_name
+            description: Restaurant name
+          - name: legal_business_name
+            description: Legal business name
+          - name: doing_business_as_dba
+            description: Doing Business As (DBA) name
+          - name: food_service_establishment
+            description: Food service establishment type
+          - name: building_number
+            description: Building number of the business address
+          - name: street
+            description: Street name of the business address
+          - name: borough
+            description: NYC borough where the business is located
+          - name: zip
+            description: ZIP code of the business address
+          - name: business_address
+            description: Full business address
+          - name: seating_interest_sidewalk
+            description: Indicates interest in sidewalk seating
+          - name: approved_for_sidewalk_seating
+            description: Indicates whether sidewalk seating was approved
+          - name: approved_for_roadway_seating
+            description: Indicates whether roadway seating was approved
+          - name: sidewalk_dimensions_area
+            description: Sidewalk seating area dimensions
+          - name: roadway_dimensions_area
+            description: Roadway seating area dimensions
+          - name: latitude
+            description: Latitude coordinate
+          - name: longitude
+            description: Longitude coordinate
+          - name: bbl
+            description: Borough Block and Lot number
+          - name: bin
+            description: Building Identification Number
+          - name: census_tract
+            description: Census tract of the business location
+          - name: community_board
+            description: NYC Community Board district number
+          - name: council_district
+            description: NYC Council district number
+          - name: healthcompliance_terms
+            description: Health compliance terms associated with the business
+          - name: landmark_district_or_building
+            description: Landmark district or building designation
+          - name: landmarkdistrict_terms
+            description: Landmark district terms
+          - name: nta
+            description: Neighborhood Tabulation Area
+          - name: qualify_alcohol
+            description: Indicates whether the business qualifies for alcohol service
+          - name: roadway_dimensions_length
+            description: Length of roadway seating dimensions
+          - name: roadway_dimensions_width
+            description: Width of roadway seating dimensions
+          - name: sidewalk_dimensions_length
+            description: Length of sidewalk seating dimensions
+          - name: sidewalk_dimensions_width
+            description: Width of sidewalk seating dimensions
+          - name: sla_license_type
+            description: SLA license type
+          - name: sla_serial_number
+            description: SLA serial number
