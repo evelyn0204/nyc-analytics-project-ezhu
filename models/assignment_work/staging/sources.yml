@@ -5,7 +5,7 @@ sources:
     database: project-9440-eve
     schema: nyc_311_raw_data 
     tables:
-      - name: project-9440-eve.nyc_311_raw_data.source_dot_service_requests_history
+      - name: source_dot_service_requests_history
         description: |
           NYC 311 service requests for Dept of Transportation.
           One row per service request.
