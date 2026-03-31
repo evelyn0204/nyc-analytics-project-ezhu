@@ -16,7 +16,7 @@ cleaned AS (
             legal_business_name,
             doing_business_as_dba,
             food_service_establishment,
-            building_number,
+            bulding_number,
             street,
             borough,
             zip,
@@ -60,7 +60,7 @@ cleaned AS (
         CAST(food_service_establishment AS STRING) AS food_service_establishment,
 
         -- Address details
-        CAST(building_number AS STRING) AS building_number,
+        CAST(bulding_number AS STRING) AS building_number,
         CAST(street AS STRING) AS street,
         CAST(business_address AS STRING) AS business_address,
 
@@ -141,4 +141,4 @@ cleaned AS (
 )
 
 SELECT * FROM cleaned
--- All should be part of this table: stg_nyc_restaurant_requests
+-- All should be part of this table: stg_nyc_open_restaurant_apps
