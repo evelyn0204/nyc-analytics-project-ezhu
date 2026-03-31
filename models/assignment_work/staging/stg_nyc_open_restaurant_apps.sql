@@ -7,45 +7,6 @@ WITH source AS (
 
 cleaned AS (
     SELECT
-        -- Get all columns from source, except ones we're transforming below
-        * EXCEPT (
-            objectid,
-            globalid,
-            time_of_submission,
-            restaurant_name,
-            legal_business_name,
-            doing_business_as_dba,
-            food_service_establishment,
-            bulding_number,
-            street,
-            borough,
-            zip,
-            business_address,
-            seating_interest_sidewalk,
-            approved_for_sidewalk_seating,
-            approved_for_roadway_seating,
-            sidewalk_dimensions_area,
-            roadway_dimensions_area,
-            latitude,
-            longitude,
-            bbl,
-            bin,
-            census_tract,
-            community_board,
-            council_district,
-            healthcompliance_terms,
-            landmark_district_or_building,
-            landmarkdistrict_terms,
-            nta,
-            qualify_alcohol,
-            roadway_dimensions_length,
-            roadway_dimensions_width,
-            sidewalk_dimensions_length,
-            sidewalk_dimensions_width,
-            sla_license_type,
-            sla_serial_number
-        ),
-
         -- Identifiers
         CAST(objectid AS STRING) AS application_id,
         CAST(globalid AS STRING) AS global_id,
@@ -62,17 +23,14 @@ cleaned AS (
         -- Address details
         CAST(bulding_number AS STRING) AS building_number,
         CAST(street AS STRING) AS street,
+        CAST(borough AS STRING) AS raw_borough,
         CAST(business_address AS STRING) AS business_address,
 
         -- Clean zip code
         CASE
             WHEN UPPER(TRIM(CAST(zip AS STRING))) IN ('N/A', 'NA', '') THEN NULL
-            WHEN LENGTH(TRIM(CAST(zip AS STRING))) = 5
-                AND REGEXP_CONTAINS(TRIM(CAST(zip AS STRING)), r'^\d{5}$')
-            THEN TRIM(CAST(zip AS STRING))
-            WHEN LENGTH(TRIM(CAST(zip AS STRING))) = 10
-                AND REGEXP_CONTAINS(TRIM(CAST(zip AS STRING)), r'^\d{5}-\d{4}$')
-            THEN TRIM(CAST(zip AS STRING))
+            WHEN REGEXP_CONTAINS(TRIM(CAST(zip AS STRING)), r'^\d{5}$') THEN TRIM(CAST(zip AS STRING))
+            WHEN REGEXP_CONTAINS(TRIM(CAST(zip AS STRING)), r'^\d{5}-\d{4}$') THEN TRIM(CAST(zip AS STRING))
             ELSE NULL
         END AS zip,
 
@@ -141,4 +99,3 @@ cleaned AS (
 )
 
 SELECT * FROM cleaned
--- All should be part of this table: stg_nyc_open_restaurant_apps
